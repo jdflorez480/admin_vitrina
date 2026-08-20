@@ -10,6 +10,7 @@ import RentalsPanel from '@/app/components/vitrina/RentalsPanel'
 import RecentRegistrations from '@/app/components/vitrina/RecentRegistrations'
 import { TopAgents, TopCities, TopProperties } from '@/app/components/vitrina/Rankings'
 import PeriodFilter from '@/app/components/vitrina/PeriodFilter'
+import PageHeader from '@/app/components/shared/PageHeader'
 import { DEFAULT_PERIOD, isValidPeriod } from '@/lib/vitrina/periods'
 
 // Etiquetas legibles para las claves crudas que devuelve la API.
@@ -77,16 +78,13 @@ export default async function DashboardPage({
 
   return (
     <div className='grid grid-cols-12 gap-6'>
-      <div className='col-span-12 flex flex-wrap items-end justify-between gap-4'>
-        <div>
-          <h1 className='text-xl font-semibold'>
-            Hola, {session?.user.name?.split(' ')[0]}
-          </h1>
-          <p className='text-sm text-muted-foreground'>
-            Métricas de Vitrina Raíz · actualizado el {formatDate(stats.generatedAt)}
-          </p>
-        </div>
-        <PeriodFilter />
+      <div className='col-span-12'>
+        <PageHeader
+          icon='solar:chart-square-bold-duotone'
+          title={`Hola, ${session?.user.name?.split(' ')[0] ?? 'administrador'}`}
+          subtitle={`Métricas de Vitrina Raíz · actualizado el ${formatDate(stats.generatedAt)}`}>
+          <PeriodFilter />
+        </PageHeader>
       </div>
 
       <div className='col-span-12'>

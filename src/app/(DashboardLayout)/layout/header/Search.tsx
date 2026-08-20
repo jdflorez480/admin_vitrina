@@ -62,33 +62,38 @@ function Search() {
           icon='solar:magnifer-linear'
           width='18'
           height='18'
-          className='absolute left-3 top-1/2 -translate-y-1/2'
+          className='absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none'
         />
 
         <Input
-          placeholder='Search....'
-          className='rounded-xl pl-10'
-          required
+          placeholder='Buscar en el panel…'
+          aria-label='Buscar en el panel'
+          className='rounded-full bg-muted/60 border-transparent pl-10 focus-visible:bg-card focus-visible:border-primary'
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
       </div>
       <div
-        className={`absolute w-full  bg-background rounded-md top-11 z-10 start-0 shadow-md border border-border ${
+        className={`absolute w-full bg-card rounded-tw top-12 z-10 start-0 shadow-lg border border-border overflow-hidden ${
           Boolean(query) ? 'block' : 'hidden'
         }`}>
-        <SimpleBar className='h-72 p-4 custom-scroll'>
+        <SimpleBar className='max-h-72 p-2 custom-scroll'>
           {Boolean(results.length) ? (
             results.map((item, i) => (
               <Link
                 key={i}
                 href={item.url}
                 onClick={() => setQuery('')}
-                className='  p-2 mb-1.5 last:mb-0 flex items-center bg-input/30 gap-2 text-sm font-medium rounded-md hover:bg-primary/20 hover:text-primary w-full'>
+                className='group/link p-2.5 mb-1 last:mb-0 flex items-center gap-2 text-sm font-medium rounded-md hover:bg-lightprimary hover:text-primary w-full'>
                 <div className='flex items-center'>
-                  <Icon icon='iconoir:component' width={18} height={18} />
+                  <Icon
+                    icon={item.icon || 'iconoir:component'}
+                    width={18}
+                    height={18}
+                    className='text-muted-foreground group-hover/link:text-primary'
+                  />
                   <div className='ps-3'>
-                    <h5 className='mb-1 text-sm group-hover/link:text-primary'>
+                    <h5 className='mb-0.5 text-sm group-hover/link:text-primary'>
                       {item.name}
                     </h5>
                     <span className='text-xs block truncate text-muted-foreground'>
@@ -99,10 +104,17 @@ function Search() {
               </Link>
             ))
           ) : (
-            <div className='flex items-center justify-center h-full'>
-              <h1 className='text-medium font-medium'>
-                No Components Found!
-              </h1>
+            <div className='flex flex-col items-center justify-center gap-1 px-4 py-8 text-center'>
+              <Icon
+                icon='solar:magnifer-linear'
+                width={22}
+                height={22}
+                className='text-muted-foreground'
+              />
+              <p className='text-sm font-medium'>Sin resultados</p>
+              <p className='text-xs text-muted-foreground'>
+                Prueba con «usuarios» o «métricas».
+              </p>
             </div>
           )}
         </SimpleBar>

@@ -1,6 +1,7 @@
 import 'server-only'
 
 import { getSession } from './session'
+import { isPaidPlan } from './plans'
 import { SORT_VALUES } from './types'
 import type {
   LoginResponse,
@@ -216,6 +217,30 @@ async function scanAllUsers(): Promise<User[]> {
 export async function getUserById(id: string): Promise<User | null> {
   const users = await scanAllUsers()
   return users.find((u) => u.id === id) ?? null
+}
+
+/**
+ * Los usuarios agrupados por si pagan o no.
+ *
+ * La API no sabe filtrar por "plan de pago" (sólo por un plan concreto), así que
+ * se resuelve sobre el escaneo completo, que además ya viene cacheado.
+ */
+export async function getSubscribers(): Promise<{
+  paid: User[]
+  trials: User[]
+  /** Desactivados que estaban pagando: ingreso que se perdió. */
+  churned: User[]
+  activeTotal: number
+}> {
+  const all = await scanAllUsers()
+  const live = all.filter((u) => !u.deletedAt)
+
+  return {
+    paid: live.filter((u) => isPaidPlan(u.currentPlan)),
+    trials: live.filter((u) => u.currentPlan === 'TRIAL'),
+    churned: all.filter((u) => u.deletedAt && isPaidPlan(u.currentPlan)),
+    activeTotal: live.length,
+  }
 }
 
 export function getUserData<T>(id: string, type: UserDataType, page = 1) {

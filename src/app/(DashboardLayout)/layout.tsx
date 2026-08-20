@@ -21,11 +21,11 @@ export default async function Layout({
         <div className='xl:block hidden'>
           <Sidebar />
         </div>
-        <div className='body-wrapper w-full bg-background'>
+        <div className='body-wrapper w-full min-h-screen bg-background bg-brand-mesh'>
           {/* Top Header  */}
           <Header user={session.user} />
           {/* Body Content  */}
-          <div className={`container mx-auto px-6 py-30`}>{children}</div>
+          <div className={`container mx-auto px-6 pt-4 pb-12`}>{children}</div>
         </div>
       </div>
     </div>

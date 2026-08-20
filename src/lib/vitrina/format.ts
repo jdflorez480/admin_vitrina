@@ -1,16 +1,16 @@
 /**
  * Paleta categórica de las gráficas.
  *
- * Derivada de los tokens del template, pero con el turquesa y el ámbar
- * oscurecidos: los originales (#13deb9, #f6b51e) quedaban por debajo de 3:1 de
- * contraste sobre fondo claro — se desvanecían. Estos seis pasan las cuatro
+ * Anclada en el azul de la marca, pero con el turquesa y el ámbar oscurecidos:
+ * los originales (#13deb9, #f6b51e) quedaban por debajo de 3:1 de contraste
+ * sobre fondo claro — se desvanecían. Estos seis pasan las cuatro
  * comprobaciones (banda de luminosidad, croma, separación para daltonismo y
  * contraste) tanto en tema claro como oscuro, así que sirve una sola lista.
  *
  * El orden es fijo: cada serie conserva su color aunque se filtren otras.
  */
 export const CHART_COLORS = [
-  '#5d87ff', // azul
+  '#3f82d6', // azul de marca (Vitrina Raíz) — 3,9:1 en claro, 4,6:1 en oscuro
   '#0f9e86', // verde
   '#8754ec', // violeta
   '#b07c04', // ámbar

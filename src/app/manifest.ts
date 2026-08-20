@@ -2,15 +2,23 @@ import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Tailwind Admin Dashboard',
-    short_name: 'TailwindAdmin',
+    name: 'Vitrina Raíz · Panel de administración',
+    short_name: 'Vitrina Raíz',
+    description: 'Panel de administración de la plataforma Vitrina Raíz.',
+    lang: 'es',
     start_url: '/',
     display: 'standalone',
-    background_color: '#ffffff',
-    theme_color: '#5d87ff',
+    background_color: '#0d2350',
+    theme_color: '#0d2350',
     icons: [
-      { src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
-      { src: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
+      { src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+      { src: '/icons/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+      {
+        src: '/icons/icon-maskable-512.png',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'maskable',
+      },
     ],
   };
 }

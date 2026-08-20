@@ -54,6 +54,12 @@ const SidebarContent: MenuItem[] = [
         id: uniqueId(),
         url: '/usuarios',
       },
+      {
+        name: 'Planes de pago',
+        icon: 'solar:crown-linear',
+        id: uniqueId(),
+        url: '/planes-pago',
+      },
     ],
   },
 ]

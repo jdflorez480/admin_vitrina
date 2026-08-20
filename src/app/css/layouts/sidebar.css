@@ -8,3 +8,33 @@
 [data-slot='badge'] {
   font-size: x-small;
 }
+
+/* El paquete pinta el ítem activo con un color plano en un `style` inline, así
+   que hay que ganarle con !important para poner el degradado de la marca. */
+[data-slot='sidebar-menu-button'][data-active='true'] .shadcn_menu_item {
+  background-color: transparent !important;
+  background-image: var(--brand-gradient);
+  color: #ffffff !important;
+  box-shadow: var(--shadow-brand);
+  font-weight: 600;
+}
+
+[data-slot='sidebar-menu-button'][data-active='true'] .shadcn_menu_item svg {
+  color: #ffffff;
+}
+
+/* Reposo: fondo tenue de marca en lugar del gris del template. */
+[data-slot='sidebar-menu-button']:not([data-active='true']) .shadcn_menu_item:hover {
+  background-color: var(--lightprimary);
+  color: var(--primary) !important;
+}
+
+[data-slot='sidebar-menu-item'] {
+  margin-bottom: 2px;
+}
+
+/* Los encabezados de sección respiran un poco más. */
+.hide-menu {
+  letter-spacing: 0.1em;
+  opacity: 0.75;
+}

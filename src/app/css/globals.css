@@ -15,10 +15,14 @@ main {
 
 @theme {
 
-  --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
-  --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-  --shadow-md: 0 1px 4px rgba(133, 146, 173, 0.2);
-  --shadow-btn-shadow: 0 9px 17.5px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 1rem 3rem rgba(13, 35, 80, 0.175);
+  --shadow-sm: 0 0.125rem 0.25rem rgba(13, 35, 80, 0.075);
+  --shadow-md: 0 1px 4px rgba(13, 35, 80, 0.14);
+  --shadow-btn-shadow: 0 9px 17.5px rgba(13, 35, 80, 0.08);
+  /* Elevación de tarjeta: dos capas para que el borde no se vea duro. */
+  --shadow-card: 0 1px 2px rgba(13, 35, 80, 0.04), 0 8px 24px -12px rgba(13, 35, 80, 0.12);
+  --shadow-card-hover: 0 1px 2px rgba(13, 35, 80, 0.06), 0 18px 36px -16px rgba(13, 35, 80, 0.22);
+  --shadow-brand: 0 10px 24px -10px rgba(43, 99, 172, 0.55);
 
   --radius-sm: 4px;
   --radius-md: 7px;
@@ -89,6 +93,12 @@ main {
   --color-lighterror: var(--lighterror);
   --color-lightinfo: var(--lightinfo);
   --color-lightwarning: var(--lightwarning);
+  /* Marca Vitrina Raíz — tomados del degradado del logo */
+  --color-brand-sky: var(--brand-sky);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-indigo: var(--brand-indigo);
+  --color-brand-navy: var(--brand-navy);
+
   --color-primaryemphasis: var(--primary-emphasis);
   --color-secondaryemphasis: var(--secondary-emphasis);
   --color-warningemphasis: var(--warning-emphasis);
@@ -98,33 +108,33 @@ main {
 }
 
 :root {
-  --radius: 10px;
-  --background: var(--white);
+  --radius: 12px;
+  --background: #f4f7fc;
   --foreground: var(--dark);
   --card: var(--white);
-  --card-foreground: var(--link);
+  --card-foreground: var(--dark);
   --popover: var(--white);
-  --popover-foreground: var(--link);
-  --primary: #5d87ff;
+  --popover-foreground: var(--dark);
+  --primary: var(--brand-blue);
   --primary-foreground: var(--white);
-  --secondary: #49beff;
+  --secondary: var(--brand-sky);
   --secondary-foreground: var(--white);
-  --muted: #f5f5f5;
-  --muted-foreground: #5a6a85bf;
+  --muted: #eef2f9;
+  --muted-foreground: #5f7292;
   --accent: var(--lightprimary);
   --accent-foreground: var(--primary);
   --destructive: var(--error);
   --destructive-foreground: var(--white);
-  --border: #dfe5ef;
-  --input: #e5e7eb;
+  --border: #e2e8f3;
+  --input: #dde5f1;
   --ring: var(--lightprimary);
   --chart-1: var(--primary);
   --chart-2: var(--secondary);
   --chart-3: var(--success);
   --chart-4: var(--warning);
-  --chart-5: var(--error);
+  --chart-5: var(--info);
   --sidebar: var(--white);
-  --sidebar-foreground: #2a3547;
+  --sidebar-foreground: #44557a;
   --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: var(--white);
   --sidebar-accent: var(--lightprimary);
@@ -132,14 +142,21 @@ main {
   --sidebar-border: var(--border);
   --sidebar-ring: #a1a1a1;
 
+  /* MARCA — muestreados del degradado del logo de Vitrina Raíz */
+  --brand-sky: #2f86c6;
+  --brand-blue: #2b63ac;
+  --brand-indigo: #213580;
+  --brand-navy: #0d2350;
+  --brand-gradient: linear-gradient(135deg, #3a92d1 0%, #2b63ac 45%, #14285e 100%);
+
   /* CUSTOM COLORS */
-  --info: #8754ec;
-  --success: #13deb9;
-  --warning: #f6b51e;
-  --error: #ef4444;
+  --info: #7c5cf0;
+  --success: #0fa47f;
+  --warning: #d9971a;
+  --error: #e2445c;
   --white: #ffffff;
-  --dark: #1c2536;
-  --bodytext: #5a6a85bf;
+  --dark: #0d2350;
+  --bodytext: #5f7292;
 
   /* Light Variants */
   --lightprimary: color-mix(in oklab, var(--primary) 12%, transparent);
@@ -160,30 +177,31 @@ main {
 
 .dark {
   --background: var(--dark);
-  --foreground: var(--white);
-  --card: var(--dark);
-  --card-foreground: var(--white);
-  --popover: #333f55;
-  --popover-foreground: var(--white);
-  --primary: #5d87ff;
-  --primary-foreground: var(--white);
-  --secondary: #49beff;
-  --secondary-foreground: var(--white);
-  --muted: #2a3851;
-  --muted-foreground: #7c8fac;
+  --foreground: #eaf0fb;
+  --card: #111f3e;
+  --card-foreground: #eaf0fb;
+  --popover: #16264a;
+  --popover-foreground: #eaf0fb;
+  /* En fondo oscuro el azul de marca queda apagado: subimos un paso. */
+  --primary: #4f92e0;
+  --primary-foreground: #08152e;
+  --secondary: #57b0ec;
+  --secondary-foreground: #08152e;
+  --muted: #16264a;
+  --muted-foreground: #93a7cb;
   --accent: var(--accent);
   --accent-foreground: var(--accent-foreground);
   --destructive: var(--error);
-  --border: #333f55;
+  --border: #21325b;
   --input: var(--border);
   --ring: var(--lightprimary);
   --chart-1: var(--primary);
   --chart-2: var(--secondary);
   --chart-3: var(--success);
   --chart-4: var(--warning);
-  --chart-5: var(--error);
-  --sidebar: var(--dark);
-  --sidebar-foreground: #7c8fac;
+  --chart-5: var(--info);
+  --sidebar: #0a1a3a;
+  --sidebar-foreground: #93a7cb;
   --sidebar-primary: var(--sidebar-primary);
   --sidebar-primary-foreground: var(--sidebar-primary-foreground);
   --sidebar-accent: var(--sidebar-accent);
@@ -191,14 +209,21 @@ main {
   --sidebar-border: var(--sidebar-border);
   --sidebar-ring: var(--sidebar-ring);
 
+  /* MARCA */
+  --brand-sky: #57b0ec;
+  --brand-blue: #4f92e0;
+  --brand-indigo: #2b4fa8;
+  --brand-navy: #0d2350;
+  --brand-gradient: linear-gradient(135deg, #3a92d1 0%, #2b63ac 45%, #14285e 100%);
+
   /* CUSTOM COLORS */
-  --info: #8754ec;
-  --success: #13deb9;
-  --warning: #f6b51e;
-  --error: #ef4444;
+  --info: #9b83f5;
+  --success: #24c9a0;
+  --warning: #f0b429;
+  --error: #f2637a;
   --white: #ffffff;
-  --dark: #1c2536;
-  --bodytext: #5a6a85bf;
+  --dark: #081730;
+  --bodytext: #93a7cb;
 
   /* Light Variants */
   --lightprimary: color-mix(in oklab, var(--primary) 20%, transparent);
@@ -262,6 +287,56 @@ main {
   @apply text-lg font-semibold text-foreground;
 }
 
+/* ---- Marca Vitrina Raíz ---- */
+
+@utility bg-brand-gradient {
+  background-image: var(--brand-gradient);
+}
+
+@utility text-brand-gradient {
+  background-image: var(--brand-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Malla sutil de fondo: da textura a la zona de contenido sin robar
+   protagonismo a las tarjetas. */
+@utility bg-brand-mesh {
+  background-image:
+    radial-gradient(60rem 30rem at 12% -10%, color-mix(in oklab, var(--brand-sky) 14%, transparent), transparent 60%),
+    radial-gradient(50rem 26rem at 95% 0%, color-mix(in oklab, var(--brand-indigo) 12%, transparent), transparent 55%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Cabecera translúcida cuando la página se desplaza. */
+@utility glass {
+  background-color: color-mix(in oklab, var(--background) 72%, transparent);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+}
+
+/* Franja de acento en el borde superior de una tarjeta. */
+@utility accent-top {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background-image: var(--brand-gradient);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
 @utility border-ld {
   @apply border-border;
 }
@@ -308,6 +383,45 @@ main {
     @apply pr-9!;
   }
 
+  /* Tarjetas: sombra suave en vez de borde duro, y una elevación al pasar
+     el cursor que sugiere que el bloque es interactivo. */
+  .card {
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+
+  .card-lift:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+
+  /* Barras de desplazamiento acordes al panel (Chrome/Edge y Firefox). */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: color-mix(in oklab, var(--bodytext) 35%, transparent);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: color-mix(in oklab, var(--primary) 55%, transparent);
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--primary) 22%, transparent);
+  }
 }
 
 input[type="time"]::-webkit-calendar-picker-indicator {

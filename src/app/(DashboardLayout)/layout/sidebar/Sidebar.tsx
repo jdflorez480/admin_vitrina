@@ -117,7 +117,8 @@ const SidebarLayout = ({ onClose }: { onClose?: () => void }) => {
       width={'270px'}
       showTrigger={false}
       mode={sidebarMode}
-      className='fixed left-0 top-0 border border-border bg-sidebar dark:bg-sidebar z-10 h-screen'>
+      themeColor='#2b63ac'
+      className='fixed left-0 top-0 border-e border-border bg-sidebar dark:bg-sidebar z-10 h-screen'>
       {/* Logo */}
       <div className='px-6 flex items-center brand-logo overflow-hidden'>
         <AMLogo component={Link} href='/' img=''>
@@ -128,20 +129,50 @@ const SidebarLayout = ({ onClose }: { onClose?: () => void }) => {
       {/* Sidebar items */}
 
       <SimpleBar className='h-[calc(100vh-100px)]'>
-        <div className='px-6'>
-          {SidebarContent.map((section, index) => (
-            <div key={index}>
-              {renderSidebarItems(
-                [
-                  ...(section.heading ? [{ heading: section.heading }] : []),
-                  ...(section.children || []),
-                ],
-                pathname,
-                onClose
-              )}
-            </div>
-          ))}
+        <div className='flex min-h-[calc(100vh-120px)] flex-col px-6'>
+          <div className='flex-1'>
+            {SidebarContent.map((section, index) => (
+              <div key={index}>
+                {renderSidebarItems(
+                  [
+                    ...(section.heading ? [{ heading: section.heading }] : []),
+                    ...(section.children || []),
+                  ],
+                  pathname,
+                  onClose
+                )}
+              </div>
+            ))}
+          </div>
 
+          {/* Acceso rápido al sitio público: el uso habitual del panel es
+              revisar una métrica y saltar a verla en la plataforma. */}
+          <div className='relative mt-8 mb-6 overflow-hidden rounded-tw bg-brand-gradient p-4 text-white'>
+            <Image
+              src='/images/logos/vitrina-glyph.png'
+              alt=''
+              width={140}
+              height={140}
+              aria-hidden
+              className='pointer-events-none absolute -right-5 -bottom-6 w-24 opacity-10'
+            />
+            <p className='relative text-sm font-semibold'>Vitrina Raíz</p>
+            <p className='relative mt-1 text-xs text-white/70'>
+              Mira la plataforma tal como la ven tus usuarios.
+            </p>
+            <Button
+              asChild
+              size='sm'
+              className='relative mt-3 h-8 rounded-md bg-white/15 text-white hover:bg-white/25'>
+              <a
+                href='https://vitrinaraiz.com'
+                target='_blank'
+                rel='noreferrer noopener'>
+                Abrir sitio
+                <Icon icon='solar:arrow-right-up-linear' height={14} width={14} />
+              </a>
+            </Button>
+          </div>
         </div>
       </SimpleBar>
     </AMSidebar>

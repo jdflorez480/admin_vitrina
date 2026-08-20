@@ -39,12 +39,14 @@ const Header = ({ user }: { user: AdminUser }) => {
   return (
     <>
       <header
-        className={`sticky top-0 z-2 ${
-          isSticky ? "bg-background shadow-md fixed w-full" : "bg-transparent"
+        className={`sticky top-0 z-2 transition-all duration-300 ${
+          isSticky
+            ? "glass border-b border-border shadow-md"
+            : "bg-transparent border-b border-transparent"
         }`}
       >
         <nav
-          className={`rounded-none  py-4 sm:ps-6 max-w-full! sm:pe-10 dark:bg-dark flex justify-between items-center px-6`}
+          className={`rounded-none py-3 sm:ps-6 max-w-full! sm:pe-10 flex justify-between items-center px-6`}
         >
           {/* Mobile Toggle Icon */}
           <div

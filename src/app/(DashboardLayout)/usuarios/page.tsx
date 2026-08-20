@@ -3,6 +3,7 @@ import { ApiError, listUsers } from '@/lib/vitrina/api'
 import { SORT_VALUES, type SortKey } from '@/lib/vitrina/types'
 import { formatNumber } from '@/lib/vitrina/format'
 import CardBox from '@/app/components/shared/CardBox'
+import PageHeader from '@/app/components/shared/PageHeader'
 import UserFiltersBar from '@/app/components/vitrina/users/UserFiltersBar'
 import UsersTable from '@/app/components/vitrina/users/UsersTable'
 import Pagination from '@/app/components/vitrina/users/Pagination'
@@ -44,11 +45,13 @@ export default async function UsersPage({
   return (
     <div className='grid grid-cols-12 gap-6'>
       <div className='col-span-12'>
-        <h1 className='text-xl font-semibold'>Usuarios</h1>
-        <p className='text-sm text-muted-foreground'>
-          {formatNumber(counts.active)} activo(s) · {formatNumber(counts.deactivated)}{' '}
-          desactivado(s) · {formatNumber(counts.total)} en total
-        </p>
+        <PageHeader
+          icon='solar:users-group-rounded-bold-duotone'
+          title='Usuarios'
+          subtitle={`${formatNumber(counts.active)} activo(s) · ${formatNumber(
+            counts.deactivated
+          )} desactivado(s) · ${formatNumber(counts.total)} en total`}
+        />
       </div>
 
       <div className='col-span-12'>
